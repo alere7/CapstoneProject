@@ -1,4 +1,5 @@
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.Random;
 
 /**
@@ -8,6 +9,7 @@ public class Registration {
 
     private static ArrayList<String> course ;
     private static int loopNum = 3;
+    private static Random rand = new Random();
 
     public static void initalizeCourses(){
         course = new ArrayList<>();
@@ -47,10 +49,24 @@ public class Registration {
         }
     }
 
+    private static void writeToFile(ArrayList<String> c){
+
+    }
+
+    private static void readFromFile(){
+
+    }
+
+    private static void randomizeList(ArrayList<String> c){
+        Collections.shuffle(c, rand);
+    }
+
     public static void main(String[] args) {
         System.out.println("Registration");
 
         initalizeCourses();
+        printCourses();
+        randomizeList(course);
         printCourses();
     }
 }
