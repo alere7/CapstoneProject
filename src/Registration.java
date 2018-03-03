@@ -6,6 +6,13 @@ import java.util.Random;
  * ralex1 on 2/26/2018.
  */
 public class Registration {
+    //todo: REFORMAT CODE ==> get rid of global variables and static (easier but learn how to use different classes)
+    //todo: make another class seperate from main (help public/private)
+
+    //todo: (#1) ==> write method for instructions below
+    //todo: Inorder to graduate, you must take all CPSC and Math Courses plus the same # of classes equal to that total
+
+    //todo: (info) select 6 course ==> 1 semester is 6 classes, so intervals of 6 until graduation reqirement is acheieved
 
     private static ArrayList<String> course ;
     private static int loopNum = 3;
