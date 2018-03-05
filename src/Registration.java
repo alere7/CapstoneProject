@@ -3,7 +3,7 @@ import java.util.Collections;
 import java.util.Random;
 
 /**
- * ralex1 on 2/26/2018.
+ * ralex1 on 3/4/2018.
  */
 public class Registration {
     //todo: REFORMAT CODE ==> get rid of global variables and static (easier but learn how to use different classes)
@@ -15,10 +15,10 @@ public class Registration {
     //todo: (info) select 6 course ==> 1 semester is 6 classes, so intervals of 6 until graduation reqirement is acheieved
 
     private static ArrayList<String> course ;
-    private static int loopNum = 3;
-    private static Random rand = new Random();
+    private int loopNum = 3;
+    private Random rand = new Random();
 
-    public static void initalizeCourses(){
+    public void initalizeCourses(){
         course = new ArrayList<>();
 
         course.add("CPSC 1710");
@@ -28,7 +28,7 @@ public class Registration {
         course.add("MATH 1070");
         course.add("PHIL 2040");
         course.add("PHIL 2550");
-        
+
         //todo: instead of writing every courseNum ==> for every course randomly generate 2 or 3 courseNums per lvl
         //todo: EX) 2 or 3 1000 lvl courses (in order from smallest to largest) etc...
 
@@ -40,7 +40,7 @@ public class Registration {
         randomCourses(loopNum, "PHYS", course);
     }
 
-    private static void randomCourses(int loopNum, String course, ArrayList<String> c){
+    private void randomCourses(int loopNum, String course, ArrayList<String> c){
         Random rand = new Random();
 
         for (int i = 0; i < loopNum; i++) {
@@ -49,31 +49,30 @@ public class Registration {
         }
     }
 
-    private static void printCourses(){
+    public void printCourses(){
         System.out.println("The list of courses are: ");
         for (int i = 0; i < course.size(); i++) {
             System.out.println(course.get(i));
         }
     }
 
-    private static void writeToFile(ArrayList<String> c){
+    public void writeToFile(ArrayList<String> c){
 
     }
 
-    private static void readFromFile(){
+    public void readFromFile(){
 
     }
 
-    private static void randomizeList(ArrayList<String> c){
+    public ArrayList<String> getCourse() {
+        return course;
+    }
+
+    public void setCourse(ArrayList<String> course) {
+        Registration.course = course;
+    }
+
+    public void randomizeList(ArrayList<String> c){
         Collections.shuffle(c, rand);
-    }
-
-    public static void main(String[] args) {
-        System.out.println("Registration");
-
-        initalizeCourses();
-        printCourses();
-        randomizeList(course);
-        printCourses();
     }
 }
