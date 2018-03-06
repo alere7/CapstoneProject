@@ -14,7 +14,8 @@ public class Registration {
 
     //todo: (info) select 6 course ==> 1 semester is 6 classes, so intervals of 6 until graduation reqirement is acheieved
 
-    private static ArrayList<String> course ;
+    private static ArrayList<String> course;
+    private ArrayList<String> coursesTaken;
     private int loopNum = 3;
     private Random rand = new Random();
 
@@ -41,8 +42,6 @@ public class Registration {
     }
 
     private void randomCourses(int loopNum, String course, ArrayList<String> c){
-        Random rand = new Random();
-
         for (int i = 0; i < loopNum; i++) {
             int num = rand.nextInt(4000)+1000;
             c.add(course+ " " + num);
@@ -75,4 +74,31 @@ public class Registration {
     public void randomizeList(ArrayList<String> c){
         Collections.shuffle(c, rand);
     }
+
+    private int countMathCPSCCourses(ArrayList<String> c){
+        int count = 0;
+
+        for (int i = 0; i < c.size(); i++) {
+            if (c.get(i).startsWith("CPSC") || c.get(i).startsWith("MATH"))
+                count++;
+        }
+
+        return count;
+    }
+
+    public ArrayList<String> semesterEnrolledClasses(ArrayList<String> c){
+        coursesTaken = new ArrayList<>();
+        int num = countMathCPSCCourses(c);
+        int numClasses;
+
+        while (num > 0){
+            numClasses = rand.nextInt(3)+ 4;
+            for (int i = 0; i < numClasses; i++) {
+
+            }
+        }
+
+        return coursesTaken;
+    }
+
 }
