@@ -19,7 +19,7 @@ public class Registration {
     private int loopNum = 3;
     private Random rand = new Random();
 
-    public void initalizeCourses(){
+    public void initalizeCourses() {
         course = new ArrayList<>();
 
         course.add("CPSC 1710");
@@ -33,7 +33,7 @@ public class Registration {
         //todo: instead of writing every courseNum ==> for every course randomly generate 2 or 3 courseNums per lvl
         //todo: EX) 2 or 3 1000 lvl courses (in order from smallest to largest) etc...
 
-        randomCourses(loopNum, "AAD", course);
+        randomCourses(loopNum, "AADS", course);
         randomCourses(loopNum, "HIST", course);
         randomCourses(loopNum, "THEO", course);
         randomCourses(loopNum, "BIOL", course);
@@ -41,25 +41,27 @@ public class Registration {
         randomCourses(loopNum, "PHYS", course);
     }
 
-    private void randomCourses(int loopNum, String course, ArrayList<String> c){
+    private void randomCourses(int loopNum, String course, ArrayList<String> c) {
         for (int i = 0; i < loopNum; i++) {
-            int num = rand.nextInt(4000)+1000;
-            c.add(course+ " " + num);
+            int numThousands = rand.nextInt(4) + 1;
+            int numHundreds = rand.nextInt(9) + 1;
+            int numTens = rand.nextInt(9) + 1;
+            c.add(course + " " + numThousands + numHundreds + numTens + 0);
         }
     }
 
-    public void printCourses(){
-        System.out.println("The list of courses are: ");
+    public void printCourses() {
+        System.out.println("\nThe list of courses are: ");
         for (int i = 0; i < course.size(); i++) {
             System.out.println(course.get(i));
         }
     }
 
-    public void writeToFile(ArrayList<String> c){
+    public void writeToFile(ArrayList<String> c) {
 
     }
 
-    public void readFromFile(){
+    public void readFromFile() {
 
     }
 
@@ -71,11 +73,11 @@ public class Registration {
         Registration.course = course;
     }
 
-    public void randomizeList(ArrayList<String> c){
+    public void randomizeList(ArrayList<String> c) {
         Collections.shuffle(c, rand);
     }
 
-    private int countMathCPSCCourses(ArrayList<String> c){
+    private int countMathCPSCCourses(ArrayList<String> c) {
         int count = 0;
 
         for (int i = 0; i < c.size(); i++) {
@@ -86,19 +88,33 @@ public class Registration {
         return count;
     }
 
-    public ArrayList<String> semesterEnrolledClasses(ArrayList<String> c){
+    public ArrayList<String> semesterEnrolledClasses(ArrayList<String> c) {
         coursesTaken = new ArrayList<>();
         int num = countMathCPSCCourses(c);
         int numClasses;
 
-        while (num > 0){
-            numClasses = rand.nextInt(3)+ 4;
-            for (int i = 0; i < numClasses; i++) {
+        //todo: pull courses from original course list to courses taken per semester
+        numClasses = rand.nextInt(3) + 4;
+        if (!coursesTaken.contains("CPSC 1710"))
+            coursesTaken.add("CPSC 1710");
+        else if (coursesTaken.contains("CPSC 1710") && !coursesTaken.contains("CPSC 1720"))
+            coursesTaken.add("CPSC 1720");
+        else if (coursesTaken.contains("CPSC 1710") && coursesTaken.contains("CPSC 1720")
+                && !coursesTaken.contains("CPSC 2730"))
+            coursesTaken.add("CPSC 2720");
 
-            }
+        //todo: what about the courses that have already been taken from the list
+        for (int i = 0; i < numClasses - 1; i++) {
+            coursesTaken.add(c.get(i));
         }
 
         return coursesTaken;
     }
 
+    public void printCoursesTaken(){
+        System.out.println("\nThe list of courses taken are: ");
+        for (int i = 0; i < coursesTaken.size(); i++) {
+            System.out.println(coursesTaken.get(i));
+        }
+    }
 }
