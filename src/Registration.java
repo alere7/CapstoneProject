@@ -112,6 +112,8 @@ public class Registration {
         //todo: what about the courses that have already been taken from the list (cant take the same course twice in a semester)
         //todo: use a set collection to get rid of duplicates then put into an arraylist (coursesTaken)
         //todo: also make sure CPSC an MATH classes follow the correct order (cant take 1710 and 1720 or 2730 in the same semester)
+
+        //todo: for loop has to be its own function to continue adding classes
         for (int i = 0; i < numClasses - 1; i++) {
             coursesTaken.add(c.get(i));
         }
