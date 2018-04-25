@@ -14,7 +14,11 @@ public class RegistrationMain {
         r1.randomizeList(r1.getCourse());
         r1.printCourses();
 
+        r1.printCoursesListSize();
+
         r1.semesterEnrolledClasses(r1.getCourse());
         r1.printCoursesTaken();
+
+
     }
 }

@@ -14,9 +14,12 @@ public class Registration {
 
     //todo: (info) select 6 course ==> 1 semester is 6 classes, so intervals of 6 until graduation reqirement is acheieved
 
+    //126 hours to graduate ==> 42 classes
+
     private static ArrayList<String> course;
     private ArrayList<String> coursesTaken;
     private int loopNum = 3;
+    private int numCoursesToGrad = 42;
     private Random rand = new Random();
 
     public void initalizeCourses() {
@@ -33,12 +36,21 @@ public class Registration {
         //todo: instead of writing every courseNum ==> for every course randomly generate 2 or 3 courseNums per lvl
         //todo: EX) 2 or 3 1000 lvl courses (in order from smallest to largest) etc...
 
-        randomCourses(loopNum, "AADS", course);
-        randomCourses(loopNum, "HIST", course);
-        randomCourses(loopNum, "THEO", course);
         randomCourses(loopNum, "BIOL", course);
         randomCourses(loopNum, "CHEM", course);
         randomCourses(loopNum, "PHYS", course);
+        randomCourses(loopNum, "AADS", course);
+        randomCourses(loopNum, "HIST", course);
+        randomCourses(loopNum, "THEO", course);
+
+        while (course.size() < numCoursesToGrad) {
+            randomCourses(loopNum, "CPSC", course);
+            randomCourses(loopNum, "MATH", course);
+        }
+    }
+
+    public void printCoursesListSize(){
+        System.out.println("\nThere are about " + course.size() + " courses needed to graduate");
     }
 
     private void randomCourses(int loopNum, String course, ArrayList<String> c) {
@@ -93,17 +105,13 @@ public class Registration {
         int num = countMathCPSCCourses(c);
         int numClasses;
 
-        //todo: pull courses from original course list to courses taken per semester
         numClasses = rand.nextInt(3) + 4;
-        if (!coursesTaken.contains("CPSC 1710"))
-            coursesTaken.add("CPSC 1710");
-        else if (coursesTaken.contains("CPSC 1710") && !coursesTaken.contains("CPSC 1720"))
-            coursesTaken.add("CPSC 1720");
-        else if (coursesTaken.contains("CPSC 1710") && coursesTaken.contains("CPSC 1720")
-                && !coursesTaken.contains("CPSC 2730"))
-            coursesTaken.add("CPSC 2720");
 
-        //todo: what about the courses that have already been taken from the list
+        mathCPSCRequiredCourses(coursesTaken, "CPSC 1710", "CPSC 1720", "CPSC 2730");
+
+        //todo: what about the courses that have already been taken from the list (cant take the same course twice in a semester)
+        //todo: use a set collection to get rid of duplicates then put into an arraylist (coursesTaken)
+        //todo: also make sure CPSC an MATH classes follow the correct order (cant take 1710 and 1720 or 2730 in the same semester)
         for (int i = 0; i < numClasses - 1; i++) {
             coursesTaken.add(c.get(i));
         }
@@ -111,10 +119,23 @@ public class Registration {
         return coursesTaken;
     }
 
+    private void mathCPSCRequiredCourses(ArrayList<String> c, String cName1, String cName2, String cName3){
+        if (!c.contains(cName1))
+            c.add(cName1);
+        else if (c.contains(cName1) && !c.contains(cName2))
+            c.add(cName2);
+        else if (c.contains(cName1) && c.contains(cName2)
+                && !c.contains(cName3))
+            c.add(cName3);
+    }
+
+    //todo: keep track of semester and year count (1st semester freshman year...)
     public void printCoursesTaken(){
         System.out.println("\nThe list of courses taken are: ");
         for (int i = 0; i < coursesTaken.size(); i++) {
             System.out.println(coursesTaken.get(i));
         }
     }
+
+
 }
