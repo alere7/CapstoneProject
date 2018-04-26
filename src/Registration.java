@@ -20,7 +20,7 @@ public class Registration {
     private Random rand = new Random();
     private int loopNum = 3;
     private int numCoursesToGrad = 42;
-    private int semesterCount = 0;
+    private int semesterCount = 1;
     private int classifNum = 0;
 
     public void initalizeCourses() {
@@ -58,7 +58,7 @@ public class Registration {
     }
 
     public void printCoursesListSize(){
-        System.out.println("\nThere are about " + course.size() + " courses needed to graduate");
+        System.out.println("\nThere are about " + course.size() + " courses needed to graduate\n");
     }
 
     private void randomCourses(int loopNum, String course, ArrayList<String> c) {
@@ -77,20 +77,8 @@ public class Registration {
         }
     }
 
-    public void writeToFile(ArrayList<String> c) {
-
-    }
-
-    public void readFromFile() {
-
-    }
-
     public ArrayList<String> getCourse() {
         return course;
-    }
-
-    public void setCourse(ArrayList<String> course) {
-        Registration.course = course;
     }
 
     public void randomizeList(ArrayList<String> c) {
@@ -148,21 +136,53 @@ public class Registration {
 
     //todo: keep track of semester and year count (1st semester freshman year...)
     public void printCoursesTaken(){
-        int sc = 1;
-
-        if (semesterCount == 1) {
-            System.out.println(sc + "st Semester " + classification.get(classifNum) + " year");
-            semesterCount++;
-        }
-        else if (semesterCount == 2){
-            System.out.println(sc + "nd Semester " + classification.get(classifNum) + " year");
-            classifNum++;
-        }
+        semesterTransitions(semesterCount, classifNum, classification);
 
         for (int i = 0; i < coursesTaken.size(); i++) {
             System.out.println(coursesTaken.get(i));
         }
     }
 
+    private void semesterTransitions(int sc, int cn, ArrayList<String> classification){
+        if (sc == 1) {
+            System.out.println("1st Semester " + classification.get(cn) + " year:");
+            sc++;
+        }
+        else if (sc == 2){
+            System.out.println("2nd Semester " + classification.get(cn) + " year:");
+            sc++;
+            cn++;
+        }
+        else if (sc == 3) {
+            System.out.println("1st Semester " + classification.get(cn) + " year:");
+            sc++;
+        }
+        else if (sc == 4){
+            System.out.println("2nd Semester " + classification.get(cn) + " year:");
+            sc++;
+            cn++;
+        }
+        else if (sc == 5) {
+            System.out.println("1st Semester " + classification.get(cn) + " year:");
+            sc++;
+        }
+        else if (sc == 6){
+            System.out.println("2nd Semester " + classification.get(cn) + " year:");
+            sc++;
+            cn++;
+        }
+        else if (sc == 7) {
+            System.out.println("1st Semester " + classification.get(cn) + " year:");
+            sc++;
+        }
+        else if (sc == 8){
+            System.out.println("2nd Semester " + classification.get(cn) + " year:");
+            sc++;
+            cn++;
+        }
+        else{
+            System.out.println(classification.get(cn) + " year:");
+        }
 
+    }
 }

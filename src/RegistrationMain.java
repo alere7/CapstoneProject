@@ -9,7 +9,6 @@ public class RegistrationMain {
         Registration r1 = new Registration();
 
         r1.initalizeCourses();
-        //r1.printCourses();
 
         r1.randomizeList(r1.getCourse());
         r1.printCourses();
