@@ -20,8 +20,9 @@ public class Registration {
     private Random rand = new Random();
     private int loopNum = 3;
     private int numCoursesToGrad = 42;
-    private int semesterCount = 1;
+    private int semesterCount = 0;
     private int classifNum = 0;
+    private int cIndex = 0;
 
     public void initalizeCourses() {
         course = new ArrayList<>();
@@ -55,6 +56,10 @@ public class Registration {
         classification.add("Sophmore");
         classification.add("Junior");
         classification.add("Senior");
+
+        coursesTaken = new ArrayList<>();
+
+
     }
 
     public void printCoursesListSize(){
@@ -97,7 +102,6 @@ public class Registration {
     }
 
     public ArrayList<String> semesterEnrolledClasses(ArrayList<String> c) {
-        coursesTaken = new ArrayList<>();
         int num = countMathCPSCCourses(c);
         int numClasses;
 
@@ -105,12 +109,14 @@ public class Registration {
 
         mathCPSCRequiredCourses(coursesTaken, "CPSC 1710", "CPSC 1720", "CPSC 2730");
 
+
         //todo: what about the courses that have already been taken from the list (cant take the same course twice in a semester)
         //todo: use a set collection to get rid of duplicates then put into an arraylist (coursesTaken)
         //todo: also make sure CPSC an MATH classes follow the correct order (cant take 1710 and 1720 or 2730 in the same semester)
 
         //todo: this needs to be repeated x amount of times
-        addingCourseTaken(numClasses, c);
+        addingCourseTaken(numClasses, c, cIndex);
+        cIndex++;
 
         return coursesTaken;
     }
@@ -128,8 +134,8 @@ public class Registration {
         }
     }
 
-    private void addingCourseTaken(int numClasses, ArrayList<String> course){
-        for (int i = 0; i < numClasses - 1; i++) {
+    private void addingCourseTaken(int numClasses, ArrayList<String> course, int cI){
+        for (int i = cI; i < numClasses - 1; i++) {
             coursesTaken.add(course.get(i));
         }
     }
@@ -138,44 +144,44 @@ public class Registration {
     public void printCoursesTaken(){
         semesterTransitions(semesterCount, classifNum, classification);
 
-        for (int i = 0; i < coursesTaken.size(); i++) {
+        for (int i = semesterCount; i < coursesTaken.size(); i++) {
             System.out.println(coursesTaken.get(i));
         }
     }
 
     private void semesterTransitions(int sc, int cn, ArrayList<String> classification){
-        if (sc == 1) {
+        if (sc == 0) {
             System.out.println("1st Semester " + classification.get(cn) + " year:");
             sc++;
         }
-        else if (sc == 2){
+        else if (sc == 1){
             System.out.println("2nd Semester " + classification.get(cn) + " year:");
             sc++;
             cn++;
         }
-        else if (sc == 3) {
+        else if (sc == 2) {
             System.out.println("1st Semester " + classification.get(cn) + " year:");
             sc++;
         }
-        else if (sc == 4){
+        else if (sc == 3){
             System.out.println("2nd Semester " + classification.get(cn) + " year:");
             sc++;
             cn++;
         }
-        else if (sc == 5) {
+        else if (sc == 4) {
             System.out.println("1st Semester " + classification.get(cn) + " year:");
             sc++;
         }
-        else if (sc == 6){
+        else if (sc == 5){
             System.out.println("2nd Semester " + classification.get(cn) + " year:");
             sc++;
             cn++;
         }
-        else if (sc == 7) {
+        else if (sc == 6) {
             System.out.println("1st Semester " + classification.get(cn) + " year:");
             sc++;
         }
-        else if (sc == 8){
+        else if (sc == 7){
             System.out.println("2nd Semester " + classification.get(cn) + " year:");
             sc++;
             cn++;
