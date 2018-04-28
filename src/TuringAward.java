@@ -3,5 +3,10 @@
  */
 public class TuringAward {
     private String name;
-    private
+    private TuringAward left;
+    private TuringAward right;
+
+    public TuringAward(int n){
+
+    }
 }
