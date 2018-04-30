@@ -5,6 +5,8 @@ public class ATuringAwardMain {
     public static void main(String[] args) {
         System.out.println("A Turing Award App");
 
+        TuringAward tree1 = new TuringAward("Alan J. Perlis");
+
         String[] names = {"Alan J. Perlis", "Maurice Wilkes", "Richard Hamming", "Marvin Minsky", "James H. Wilkinson",
                 "John McCarthy", "Edsger W. Dijkstra", "Charles W. Bachman", "Donald E. Knuth",
                 "Allen Newell and Herbert A. Simon", "Michael O. Rabin and Dana S. Scott", "John Backus",
@@ -20,7 +22,10 @@ public class ATuringAwardMain {
                 "Silvio Micali Shafi Goldwasser", "Leslie Lamport", "Michael Stonebraker",
                 "Martin E. Hellman Whitfield Diffie", "Tim Berners-Lee", "John L. Hennessy David A. Patterson"};
 
-        TuringAward tree1 = new TuringAward();
+        for(String i : names){
+            tree1.addNode(i);
+        }
+
 
     }
 }

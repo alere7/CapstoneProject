@@ -5,8 +5,15 @@ public class TuringAward {
     private String name;
     private TuringAward left;
     private TuringAward right;
+    private int size;
 
-    public TuringAward(int n){
+    public TuringAward(String n){
+        this.name = n;
+        this.left = null;
+        this. left = null;
+    }
+
+    public void addNode(String i) {
 
     }
 }
