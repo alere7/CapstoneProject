@@ -8,7 +8,7 @@ public class TuringAward {
     private int size;
 
     //todo: add year parameter so you know what year your seaching for
-    public TuringAward(String n){
+    public TuringAward(String n, int y){
         this.name = n;
         this.left = null;
         this. left = null;
