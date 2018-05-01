@@ -5,7 +5,7 @@ public class ATuringAwardMain {
     public static void main(String[] args) {
         System.out.println("A Turing Award App");
 
-        TuringAward tree1 = new TuringAward("Alan J. Perlis");
+        TuringAward tree1 = new TuringAward("1966 Alan J. Perlis", 1995);
 
         //todo: figure out how to just read the year (from the shuffled list) in order to create binary tree effectively
         //todo: random list of strings ==> key year to start sorting from ==> create bst based on random award winners
@@ -32,6 +32,6 @@ public class ATuringAwardMain {
             tree1.addNode(i);
         }
 
-
+        tree1.printNamesRandomOrder(names);
     }
 }
